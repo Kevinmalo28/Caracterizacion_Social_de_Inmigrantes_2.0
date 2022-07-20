@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bee3d12e-ce1f-4a37-9e8f-83ea658dd2eb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="34"/>
+	<queryString>
+		<![CDATA[SELECT COUNT(*), oficina_migracion.ciudad  FROM  registro_migracion
+INNER JOIN oficina_migracion
+ON registro_migracion.id_oficina = oficina_migracion.id_oficina
+GROUP BY oficina_migracion.id_oficina;]]>
+	</queryString>
+	<field name="count" class="java.lang.Long"/>
+	<field name="ciudad" class="java.lang.String"/>
+	<title>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="134" y="0" width="297" height="49" uuid="0122485d-f757-4214-a1c7-a71d171c8034"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[REPORTE MIGRACIÓN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="77" y="7" width="406" height="46" uuid="4edb6794-d7ea-4f6c-b6f7-088c3e701464"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Unidades de Control Y sus Usos]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="244" splitType="Stretch">
+			<pieChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="244" uuid="ded4cd18-893e-46b0-a56b-6b61185b0444"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{ciudad}]]></keyExpression>
+					<valueExpression><![CDATA[$F{count}]]></valueExpression>
+					<labelExpression><![CDATA[$F{count}.toString()]]></labelExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>
